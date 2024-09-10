@@ -1,6 +1,4 @@
 import pytest
-from unittest.mock import patch
-import pandas as pd
 from src.services import transactions_by_phone_number
 
 @pytest.fixture()
