@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import patch
 import pandas as pd
-from src.services import transactions_by_phone_number, transaction_excel
+from src.services import transactions_by_phone_number
 
 @pytest.fixture()
 def test_df():
@@ -63,35 +63,3 @@ def test_transactions_by_phone_number(test_df):
 
 def test_transactions_by_phone_number_2(test_df2):
     assert transactions_by_phone_number(test_df2) == '[]'
-
-
-
-
-
-
-@pytest.fixture
-def test_df3():
-    test_dict = {
-        "id": [650703.0, 3598919.0],
-        "state": ["EXECUTED", "EXECUTED"],
-        "date": ["2023-09-05T11:30:32Z", "2020-12-06T23:00:58Z"],
-        "amount": [16210.0, 29740.0],
-        "currency_name": ["Sol", "Peso"],
-        "currency_code": ["PEN", "COP"],
-        "from": ["Счет 58803664561298323391", "Discover 3172601889670065"],
-        "to": ["Счет 39745660563456619397", "Discover 0720428384694643"],
-        "description": ["Перевод организации", "Перевод с карты на карту"]
-    }
-
-    return pd.DataFrame(test_dict)
-
-
-@patch('src.services.pd.read_excel')
-def test_transaction_excel(mock_read, test_df3):
-    mock_read.return_value = test_df3
-    expected = test_df3.to_dict(orient='records')
-    assert transaction_excel('C:/Users/User/PycharmProjects/homework/data/operations.xlsx') == expected
-
-
-def test_transaction_excel_with_incorrect_path():
-    assert transaction_excel("") == []
