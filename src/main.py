@@ -1,7 +1,9 @@
 import json
+
 import pandas as pd
-from src.utils import get_data, reader_transaction_excel, transaction_excel
-from src.views import greeting, cards_dicts, top_transaction, currency_rates, price_stock
+
+from src.utils import reader_transaction_excel
+from src.views import cards_dicts, currency_rates, greeting, price_stock, top_transaction
 
 
 def main(file_path, currencies, stocks):
