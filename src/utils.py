@@ -1,16 +1,9 @@
-import datetime as dt
-import json
-import logging
 import datetime
-import pandas as pd
+import logging
 import os
+
+import pandas as pd
 from dotenv import load_dotenv
-
-
-
-
-
-
 
 load_dotenv()
 API_KEY_CUR = os.getenv("API_KEY_CUR")
@@ -50,6 +43,7 @@ def transaction_excel(file_path):
     except FileNotFoundError:
         logger.info(f"Файл {file_path} не найден")
     raise
+
 
 def reader_transaction_excel(file_path):
     """Функция читает .xlsx файл и возвращает список словарей"""
